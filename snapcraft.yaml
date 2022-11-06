@@ -1,0 +1,27 @@
+name: extension-manager
+version: '0.1'
+summary: Utility for managing GNOME Shell Extensions
+description: The GNOME shell extension manager is a tool for helping you manage your installed GNOME shell extensions.
+base: core22
+confinement: strict
+
+apps:
+  extension-manager:
+    command: usr/bin/extension-manager
+    extensions: [gnome]
+
+slots:
+  extension-manager:
+    interface: dbus
+    bus: session
+    name: com.mattjakeman.ExtensionManager
+
+parts:
+  extension-manager:
+    plugin: dump
+    source: gnome-shell-extension-manager_0.4.0-0ubuntu1_amd64.deb
+    source-type: deb
+    build-packages:
+      - libtext-engine-dev
+    stage-packages:
+      - libtext-engine-dev
